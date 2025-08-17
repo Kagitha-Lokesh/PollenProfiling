@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pollen Profiling</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Pollen Grain Classification</h1>
+    <p>Upload a pollen image to classify. If no trained model is found, a demo prediction will be shown.</p>
+    <form action="/predict" method="post" enctype="multipart/form-data" class="card">
+      <input type="file" name="file" accept="image/*" required />
+      <button type="submit">Upload & Predict</button>
+    </form>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash">
+          {% for m in messages %}<p>{{ m }}</p>{% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+  </div>
+</body>
+</html>
